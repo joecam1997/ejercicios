@@ -1,0 +1,50 @@
+@startuml tienda-inventario
+
+class Tipo_Producto{
+     codigo:string 
+     nombre:string 
+     impuesto:numeric
+}
+class Proveedor{
+    codigo:string 
+    nombre:string 
+}
+class Producto{
+    codigo:string 
+    tipo:Tipo_Producto
+    stockDisponible:integer 
+    stockMinimo:integer
+    precio:numeric
+    proveedor:Proveedor
+ 
+}
+class  RepositorioProducto{
+     productos:list 
+    +constructor()
+    +crear(producto)
+    +editar(producto)
+    +eliminar(producto)
+
+    +presentar()
+    +abastecer()
+
+}
+class Caso_UsoProducto{
+    repositorioProducto:RepositorioProducto
+    +constructor(repositorioProducto)
+    
+    +crear(producto)
+    +editar(producto)
+    +eliminar(producto)
+     
+    +presentar()
+    +abastecer()
+}
+
+Producto -->Tipo_Producto
+Producto -->Proveedor
+
+Caso_UsoProducto "1" o-- "0..*" RepositorioProducto
+RepositorioProducto --> Producto
+
+@enduml

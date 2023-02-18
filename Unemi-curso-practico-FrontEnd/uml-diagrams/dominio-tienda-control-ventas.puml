@@ -1,0 +1,39 @@
+@startuml tienda-ventas
+
+ class Producto{
+    codigo:string 
+    tipo:Tipo_Producto
+    stockDisponible:integer 
+    stockMinimo:integer
+    precio:numeric
+    proveedor:Proveedor
+}  
+
+class Cliente{
+    cedula:string
+    nombre:string
+    telefono:string
+    direccion:string
+}
+class Venta{
+    numero:string
+    fecha:date 
+    cliente:Cliente
+    subtotal:numeric
+    impuesto:numeric
+    total:numeric
+}
+class Items{
+    producto:Producto
+    cantidad:integer
+    precio_final:numeric
+    total_items:numeric
+    impuesto:numeric
+
+
+}
+
+Venta --> Cliente 
+Venta  "1"  o--  "0..*" Items 
+Items --> Producto
+@enduml
